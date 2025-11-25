@@ -17,8 +17,16 @@ find_package(pluginlib REQUIRED)
 find_package(moveit_core REQUIRED)
 find_package(moveit_ros_planning REQUIRED)
 find_package(moveit_msgs REQUIRED)
+# set(NLopt_DIR "/usr/lib/x86_64-linux-gnu/cmake/nlopt")
+# find_package(NLopt REQUIRED)
+find_package(NLopt QUIET)
+
+if(NOT TARGET NLopt::nlopt)
+  set(NLopt_DIR "/usr/lib/x86_64-linux-gnu/cmake/nlopt")
+  find_package(NLopt REQUIRED)
+endif()
+
 find_package(trac_ik_lib REQUIRED)
-find_package(NLopt REQUIRED)
 
 # Finds Boost Components
 include(ConfigExtras.cmake)
